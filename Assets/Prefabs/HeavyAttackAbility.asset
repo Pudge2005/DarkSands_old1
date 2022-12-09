@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f546477ba5731b947a59e828c0b18e21, type: 3}
+  m_Name: HeavyAttackAbility
+  m_EditorClassIdentifier: 
+  _soDatabaseElementID: 0
+  _metaInfo:
+    _name:
+      _translations:
+      - _culture: {fileID: 11400000, guid: 9092b4e252e4d624ab7cff446cb165ac, type: 2}
+        _item: "\u043C\u043E\u0449\u043D\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
+      - _culture: {fileID: 11400000, guid: 0e8670779bfcb1e4598afb058376a46f, type: 2}
+        _item: Heavy Attack
+    _icon: {fileID: 0}
+    _preview: {fileID: 0}
+  _cost: []
+  _requirements: []
+  _damage: 50
+  _instantiateOnHit: {fileID: 7289523124543171595, guid: ebc1b1eacc5c5d743943aa20cbcf3d8f,
+    type: 3}
+  _radius: 2
+  _centerOffset: {x: 1.7, y: 0, z: 0}
