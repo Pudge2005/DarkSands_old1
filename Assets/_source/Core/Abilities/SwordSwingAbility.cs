@@ -12,7 +12,7 @@ namespace Game.Core.Abilities
         [SerializeField] private float _offset;
 
 
-        protected override void CastInherited(Character caster)
+        protected override void HandleCastStageStarted(Character caster)
         {
             Vector3 center = caster.transform.position + caster.RealFacingDirection * _offset;
 

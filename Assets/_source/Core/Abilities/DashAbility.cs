@@ -59,7 +59,7 @@ namespace Game.Core.Abilities
         [SerializeField] private float _speed = 20f;
 
 
-        protected override void CastInherited(Character caster)
+        protected override void HandleCastStageStarted(Character caster)
         {
             var dash = caster.gameObject.AddComponent<DashingComponent>();
             Vector3 direction = caster.MovingDirection;

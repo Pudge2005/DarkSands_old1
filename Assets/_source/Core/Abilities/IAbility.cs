@@ -4,6 +4,6 @@ namespace Game.Core.Abilities
 {
     public interface IAbility
     {
-        void Cast(Character caster);
+        bool Cast(Character caster, out IAbilityLifeHandle handle);
     }
 }

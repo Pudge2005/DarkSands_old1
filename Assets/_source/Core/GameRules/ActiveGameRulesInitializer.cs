@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Core.Abilities;
 using Game.Core.TwoDInThreeD;
 using UnityEngine;
 
@@ -9,6 +10,15 @@ namespace Game.Core.GameRules
         [SerializeField] private ArmorCalculationMethod _armorCalculationMethod;
         [SerializeField] private LayerMask _ignoreCharactersLayer;
         [SerializeField] private DirectionsCompositeSo _directionsComposite;
+        //[SerializeField] private CastStagesSettingsSo _castStagesSettings;
+
+
+#if UNITY_EDITOR
+        public ArmorCalculationMethod ArmorCalculationMethod => _armorCalculationMethod;
+        public LayerMask IgnoreCharactersLayer => _ignoreCharactersLayer;
+        public DirectionsCompositeSo DirectionsComposite => _directionsComposite;
+        //public CastStagesSettingsSo CastStagesSettings => _castStagesSettings;
+#endif
 
 
         private void Awake()
@@ -28,6 +38,7 @@ namespace Game.Core.GameRules
 
             ActiveGameRules.IgnoreCharactersLayer = layerID;
             ActiveGameRules.DirectionsComposite = _directionsComposite;
+            //ActiveGameRules.CastStagesSettings = _castStagesSettings;
         }
 
         private static bool CheckBit(int value, int bitPos)
