@@ -66,7 +66,7 @@ namespace Game.Core.Abilities
 
             if (direction == Vector3.zero)
             {
-                direction = caster.FacingDirection;
+                direction = caster.RealFacingDirection;
             }
             else
             {

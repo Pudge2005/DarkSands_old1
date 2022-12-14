@@ -30,6 +30,16 @@ namespace DevourDev.Unity.Utils
                 _offset = transform.position - _origin.position;
             }
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (_origin == null)
+                return;
+
+            UnityEditor.Handles.color = Color.cyan;
+            UnityEditor.Handles.DrawLine(transform.position, _origin.position, 5);
+
+        }
 #endif
 
         private void Start()

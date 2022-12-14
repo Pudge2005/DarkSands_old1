@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.Core.CharactersControllers
 {
@@ -6,9 +7,9 @@ namespace Game.Core.CharactersControllers
     public sealed class HorizontalMovementController : ActionControllerComponent<Vector2>,
                                                        IHorizontalMovementProcessor
     {
-        [SerializeField] private MovementHandler _movementContext;
-
         [SerializeField] private float _speed = 2f;
+
+
 
 
         public Vector2 ProcessHorizontalVelocity(Vector2 horizontal)

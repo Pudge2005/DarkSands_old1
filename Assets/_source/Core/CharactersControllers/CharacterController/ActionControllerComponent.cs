@@ -8,7 +8,11 @@ namespace Game.Core.CharactersControllers
         public void Trigger()
         {
             HandleInput();
+            OnInputReceived?.Invoke();
         }
+
+
+        public event System.Action OnInputReceived;
 
 
         protected abstract void HandleInput();
@@ -28,8 +32,13 @@ namespace Game.Core.CharactersControllers
             {
                 _inputValue = value;
                 HandleInput(value);
+                OnInputChanged?.Invoke(value);
             }
         }
+
+
+
+        public event System.Action<TContext> OnInputChanged;
 
 
         protected abstract void HandleInput(TContext context);

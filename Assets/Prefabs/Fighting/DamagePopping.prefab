@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 504161904474680975}
   - component: {fileID: 504161904474680974}
   - component: {fileID: 504161904474680961}
+  - component: {fileID: 3348420486528089294}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 504161904474680974}
   m_maskType: 0
+--- !u!114 &3348420486528089294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504161904474680960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c476229c7e1cfc343b2746c2146ea2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &504161905315028633
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +195,8 @@ GameObject:
   m_Component:
   - component: {fileID: 504161905315028647}
   - component: {fileID: 504161905315028646}
+  - component: {fileID: 3227679714337558338}
+  - component: {fileID: 4598694737658413618}
   m_Layer: 0
   m_Name: DamagePopping
   m_TagString: Untagged
@@ -347,3 +362,32 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _direction: {x: 0, y: -1, z: 0}
+--- !u!114 &3227679714337558338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504161905315028633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5883b5bcb66bd88489cdd0787de7eac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visibility: {fileID: 3348420486528089294}
+  _origin: {fileID: 0}
+  _syncX: 1
+  _syncY: 1
+  _syncZ: 0
+--- !u!114 &4598694737658413618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504161905315028633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7246545f2e47e4ba89738954b02362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

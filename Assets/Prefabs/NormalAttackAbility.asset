@@ -28,4 +28,4 @@ MonoBehaviour:
   _instantiateOnHit: {fileID: 7289523124543171595, guid: c03f3c890f68f9341b48622aac93a32f,
     type: 3}
   _radius: 1
-  _centerOffset: {x: 0.6, y: 0, z: 0}
+  _offset: 1

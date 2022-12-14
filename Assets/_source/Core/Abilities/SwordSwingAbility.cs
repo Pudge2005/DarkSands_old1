@@ -9,12 +9,12 @@ namespace Game.Core.Abilities
         //prototype only
 
         [SerializeField] private float _radius;
-        [SerializeField] private Vector3 _centerOffset;
+        [SerializeField] private float _offset;
 
 
         protected override void CastInherited(Character caster)
         {
-            Vector3 center = caster.transform.position + caster.transform.rotation * _centerOffset;
+            Vector3 center = caster.transform.position + caster.RealFacingDirection * _offset;
 
             var targets = Physics.OverlapSphere(center, _radius);
 

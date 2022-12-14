@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Core.TwoDInThreeD;
 using UnityEngine;
 
 namespace Game.Core.GameRules
@@ -7,6 +8,7 @@ namespace Game.Core.GameRules
     {
         [SerializeField] private ArmorCalculationMethod _armorCalculationMethod;
         [SerializeField] private LayerMask _ignoreCharactersLayer;
+        [SerializeField] private DirectionsCompositeSo _directionsComposite;
 
 
         private void Awake()
@@ -23,7 +25,9 @@ namespace Game.Core.GameRules
                     break;
                 }
             }
+
             ActiveGameRules.IgnoreCharactersLayer = layerID;
+            ActiveGameRules.DirectionsComposite = _directionsComposite;
         }
 
         private static bool CheckBit(int value, int bitPos)

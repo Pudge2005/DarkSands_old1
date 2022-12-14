@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7345444189248609436}
   - component: {fileID: 7345444189248609439}
   - component: {fileID: 7345444189248609438}
+  - component: {fileID: 8268630045344356924}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7345444189248609439}
   m_maskType: 0
+--- !u!114 &8268630045344356924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345444189248609425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c476229c7e1cfc343b2746c2146ea2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7345444189497881712
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +195,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7345444189497881726}
   - component: {fileID: 7345444189497881713}
+  - component: {fileID: 2979281789700769613}
+  - component: {fileID: 2077807824440696598}
   m_Layer: 0
   m_Name: HealPopping
   m_TagString: Untagged
@@ -329,3 +344,32 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _direction: {x: 0, y: 1, z: 0}
+--- !u!114 &2979281789700769613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345444189497881712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5883b5bcb66bd88489cdd0787de7eac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visibility: {fileID: 8268630045344356924}
+  _origin: {fileID: 0}
+  _syncX: 1
+  _syncY: 1
+  _syncZ: 0
+--- !u!114 &2077807824440696598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345444189497881712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7246545f2e47e4ba89738954b02362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
