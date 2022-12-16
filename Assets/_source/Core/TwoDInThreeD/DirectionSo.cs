@@ -2,7 +2,6 @@
 
 namespace Game.Core.TwoDInThreeD
 {
-
     [CreateAssetMenu(menuName = "2D in 3D/Direction")]
     public sealed class DirectionSo : ScriptableObject
     {

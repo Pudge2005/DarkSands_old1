@@ -20,7 +20,10 @@ namespace Game.Core.CharactersControllers
 
         protected override void HandleInput()
         {
-            _ability.Cast(_caster);
+            if(_ability.TryCast(_caster, out var handle))
+            {
+                UnityEngine.Debug.Log($"{name} casted {_ability.name}");
+            }
         }
     }
 }
