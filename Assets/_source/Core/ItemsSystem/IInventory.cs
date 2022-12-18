@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game.Core.ItemsSystem
 {
-    public delegate void InventoryEventArgs<TItem>(TItem item, int countDelta, int newCount);
-
     public interface IInventory<TItem> : IEnumerable<KeyValuePair<TItem, int>>
     {
-        event System.Action<InventoryEventArgs<TItem>> OnItemCountChanged;
+        event InventoryEventArgs<TItem> OnItemCountChanged;
 
         bool TryAdd(TItem item, int amount);
         bool Contains(TItem item, out int amount);
@@ -25,15 +20,12 @@ namespace Game.Core.ItemsSystem
         int Remove(TItem item, int amount);
 
         TItem Find(Predicate<TItem> predicate);
+
         ReadOnlyMemory<TItem> FindAll(Predicate<TItem> predicate);
+        ReadOnlyMemory<TItem> FindAll(System.Func<TItem, int, bool> predicate);
 
         bool TryFind(Predicate<TItem> predicate, out TItem foundItem);
+
         bool TryFindAll(Predicate<TItem> predicate, out ReadOnlyMemory<TItem> foundItems);
     }
-
-
-    //public abstract class Inventory<TItem> : IInventory<TItem>
-    //{
-    //    private readonly DevourDev.
-    //}
 }
