@@ -8,6 +8,10 @@ namespace Game.Core.Abilities
     [CreateAssetMenu(menuName = "Abilities/Dash")]
     public sealed class DashAbility : AttachingAbilityAction<Character, DashAbility.DashingModule>
     {
+        [SerializeField] private float _distance = 2f;
+        [SerializeField] private float _speed = 15f;
+
+
         public sealed class DashingModule : AttachableModule<Character>
         {
             private sealed class DashingComponent : ForcedMotionComponent
@@ -18,28 +22,22 @@ namespace Game.Core.Abilities
                 private Vector3 _speed;
                 private float _dashDuration;
                 private float _time;
-                private IAbilityLifeHandle _handle;
 
 
                 public override int Priority => _dashPriority;
 
 
+                public void InitDash(Vector3 direction, float distance, float speed)
                 {
                     _speed = direction * speed;
                     _dashDuration = distance / speed;
                     _tmpLayer = gameObject.layer;
-                    _handle = abilityLifeHandle;
                     gameObject.layer = ActiveGameRules.IgnoreCharactersLayer;
                 }
 
                 protected override void OnDestroy()
                 {
-                base.OnDestroy();
                     gameObject.layer = _tmpLayer;
-
-                    if (!_handle.Canceled)
-                        _handle.Cancel();
-
                     base.OnDestroy();
                 }
 
@@ -66,26 +64,33 @@ namespace Game.Core.Abilities
             internal void InitDashingModule(float distance, float speed)
             {
                 var dash = Context.gameObject.AddComponent<DashingComponent>();
-                Handle.OnCancelled += HandleCancellation;
-                Vector3 dir = Context.MovingDirection;
+                Vector3 direction = Context.MovingDirection;
 
+                if (direction == Vector3.zero)
+                {
+                    direction = Context.RealFacingDirection;
+                }
+                else
+                {
+                    direction.Normalize();
+                }
 
                 dash.InitForcedMotion(Context.MovementHandler);
-                dash.InitDash(dir, distance, speed, Handle);
+                dash.InitDash(direction, distance, speed);
+                ExternalHandle.OnCancelled += HandleActionCancelled;
 
-        protected override void CastInherited(Character caster)
-        {
-            var dash = caster.gameObject.AddComponent<DashingComponent>();
-            Vector3 direction = caster.MovingDirection;
 
+                void HandleActionCancelled()
                 {
+                    Destroy(dash);
                 }
-            else
-            {
-                direction.Normalize();
             }
         }
 
+
+        protected override void InitAttachedModule(DashingModule module, Character context)
+        {
+            module.InitDashingModule(_distance, _speed);
         }
     }
 }

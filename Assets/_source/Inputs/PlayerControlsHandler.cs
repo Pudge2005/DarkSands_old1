@@ -8,7 +8,7 @@ namespace Game.Inputs
     {
         [SerializeField] private HorizontalMovementController _horizontalMovementController;
         [SerializeField] private StealthMovementControllerComponent _stealthProcessor;
-        [SerializeField] private DashActionController _dashController;
+        [SerializeField] private UseAbilityActionController _dashController;
         [SerializeField] private UseAbilityActionController _normalAttackController;
         [SerializeField] private UseAbilityActionController _heavyAttackController;
 

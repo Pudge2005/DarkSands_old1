@@ -2,7 +2,7 @@
 
 namespace Game.Core.Abilities
 {
-    internal class AbilityLifeHandle : IAbilityLifeHandle
+    internal class LifeHandle : ILifeHandle
     {
         private bool _canceled;
 

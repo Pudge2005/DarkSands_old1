@@ -6,10 +6,10 @@ namespace Game.Core.Abilities
         where TContext : Component
         where TModule : AttachableModule<TContext>
     {
-        public sealed override void Act(TContext context, IAbilityLifeHandle handle)
+        public sealed override void Act(TContext context, IReadOnlyLifeHandle externalLifeHandle)
         {
             var module = context.gameObject.AddComponent<TModule>();
-            module.InitModuleInternal(context, handle);
+            module.InitModuleInternal(context, externalLifeHandle);
             InitAttachedModule(module, context);
         }
 

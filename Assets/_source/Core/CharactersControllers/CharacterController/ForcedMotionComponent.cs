@@ -1,7 +1,6 @@
-﻿using Game.Core.CharactersControllers;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.Core.Abilities
+namespace Game.Core.CharactersControllers
 {
     public abstract class ForcedMotionComponent : MonoBehaviour
     {

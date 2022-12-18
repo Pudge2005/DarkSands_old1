@@ -48,8 +48,6 @@ namespace Game.Core.Abilities
                     }
                 }
 
-
-                Handle?.Cancel();
                 Destroy(this);
             }
         }

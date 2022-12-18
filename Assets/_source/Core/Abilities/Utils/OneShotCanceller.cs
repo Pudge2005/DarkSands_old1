@@ -2,12 +2,12 @@
 
 namespace Game.Core.Abilities
 {
-    internal struct OneShotCanceller : IAbilityLifeHandle
+    internal struct OneShotCanceller : ILifeHandle
     {
-        private IAbilityLifeHandle _internalHandle;
+        private ILifeHandle _internalHandle;
 
 
-        public OneShotCanceller(IAbilityLifeHandle handle)
+        public OneShotCanceller(ILifeHandle handle)
         {
             _internalHandle = handle;
             OnCancelled = null;

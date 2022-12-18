@@ -6,17 +6,17 @@ namespace Game.Core.Abilities
         where TContext : Component
     {
         private TContext _context;
-        private IAbilityLifeHandle _handle;
+        private IReadOnlyLifeHandle _extHandle;
 
 
         protected TContext Context => _context;
-        protected IAbilityLifeHandle Handle => _handle;
+        protected IReadOnlyLifeHandle ExternalHandle => _extHandle;
 
 
-        internal void InitModuleInternal(TContext context, IAbilityLifeHandle handle)
+        internal void InitModuleInternal(TContext context, IReadOnlyLifeHandle externalLifeHandle)
         {
             _context = context;
-            _handle = handle;
+            _extHandle = externalLifeHandle;
             HandleInitialization();
         }
 

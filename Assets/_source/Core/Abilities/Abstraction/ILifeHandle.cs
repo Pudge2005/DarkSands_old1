@@ -2,12 +2,12 @@
 
 namespace Game.Core.Abilities
 {
-    public interface IAbilityLifeHandle : IReadOnlyAbilityHandle
+    public interface ILifeHandle : IReadOnlyLifeHandle
     {
         void Cancel();
     }
 
-    public interface IReadOnlyAbilityHandle
+    public interface IReadOnlyLifeHandle
     {
         bool Canceled { get; }
 
