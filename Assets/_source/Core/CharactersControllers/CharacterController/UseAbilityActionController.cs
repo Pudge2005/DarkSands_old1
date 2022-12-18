@@ -7,9 +7,10 @@ namespace Game.Core.CharactersControllers
     [RequireComponent(typeof(Character))]
     public sealed class UseAbilityActionController : ActionControllerComponent
     {
-        [SerializeField] private AbilitySo _ability;
+        [SerializeField] private AbilityObject<Character> _ability;
 
         private Character _caster;
+        private IAbilityLifeHandle _abilityLifeHandle;
 
 
         private void Awake()
@@ -18,9 +19,26 @@ namespace Game.Core.CharactersControllers
         }
 
 
+        public void Cancel()
+        {
+            if (_abilityLifeHandle != null)
+            {
+                _abilityLifeHandle.Cancel();
+                _abilityLifeHandle = null;
+            }
+        }
+
+
         protected override void HandleInput()
         {
+<<<<<<< Updated upstream
             _ability.Cast(_caster);
+=======
+            if (_ability.TryCast(_caster, out _abilityLifeHandle))
+            {
+                UnityEngine.Debug.Log($"{name} casted {_ability.name}");
+            }
+>>>>>>> Stashed changes
         }
     }
 }

@@ -1,80 +1,91 @@
 ﻿using Game.Core.Characters;
+using Game.Core.CharactersControllers;
 using Game.Core.GameRules;
 using UnityEngine;
 
 namespace Game.Core.Abilities
 {
-
-    [CreateAssetMenu(menuName = "Game/Abilities/Dash")]
-    public sealed class DashAbility : AbilitySo
+    [CreateAssetMenu(menuName = "Abilities/Dash")]
+    public sealed class DashAbility : AttachingAbilityAction<Character, DashAbility.DashingModule>
     {
-        private sealed class DashingComponent : ForcedMotionComponent
+        public sealed class DashingModule : AttachableModule<Character>
         {
-            private const int _dashPriority = 10;
-            private int _tmpLayer;
-
-            private Vector3 _speed;
-            private float _dashDuration;
-            private float _time;
-
-
-            public override int Priority => _dashPriority;
-
-
-            public void InitDash(Vector3 direction, float distance, float speed)
+            private sealed class DashingComponent : ForcedMotionComponent
             {
-                _speed = direction * speed;
-                _dashDuration = distance / speed;
-                _tmpLayer = gameObject.layer;
-                gameObject.layer = ActiveGameRules.IgnoreCharactersLayer;
-            }
+                private const int _dashPriority = 10;
+                private int _tmpLayer;
 
-            protected override void OnDestroy()
-            {
-                base.OnDestroy();
-                gameObject.layer = _tmpLayer;
-            }
+                private Vector3 _speed;
+                private float _dashDuration;
+                private float _time;
+                private IAbilityLifeHandle _handle;
 
-            private void Update()
-            {
-                float deltaTime = Time.deltaTime;
-                _time += deltaTime;
-                bool flag = _time >= _dashDuration;
 
-                if (flag)
-                    _time = _dashDuration;
+                public override int Priority => _dashPriority;
 
-                Vector3 movement = _speed * Time.deltaTime;
-                Translate(movement);
 
-                if (flag)
                 {
-                    Destroy(this);
+                    _speed = direction * speed;
+                    _dashDuration = distance / speed;
+                    _tmpLayer = gameObject.layer;
+                    _handle = abilityLifeHandle;
+                    gameObject.layer = ActiveGameRules.IgnoreCharactersLayer;
+                }
+
+                protected override void OnDestroy()
+                {
+                base.OnDestroy();
+                    gameObject.layer = _tmpLayer;
+
+                    if (!_handle.Canceled)
+                        _handle.Cancel();
+
+                    base.OnDestroy();
+                }
+
+                private void Update()
+                {
+                    float deltaTime = Time.deltaTime;
+                    _time += deltaTime;
+                    bool flag = _time >= _dashDuration;
+
+                    if (flag)
+                        _time = _dashDuration;
+
+                    Vector3 movement = _speed * Time.deltaTime;
+                    Translate(movement);
+
+                    if (flag)
+                    {
+                        Destroy(this);
+                    }
                 }
             }
-        }
 
 
-        [SerializeField] private float _distance = 3f;
-        [SerializeField] private float _speed = 20f;
+            internal void InitDashingModule(float distance, float speed)
+            {
+                var dash = Context.gameObject.AddComponent<DashingComponent>();
+                Handle.OnCancelled += HandleCancellation;
+                Vector3 dir = Context.MovingDirection;
 
+
+                dash.InitForcedMotion(Context.MovementHandler);
+                dash.InitDash(dir, distance, speed, Handle);
 
         protected override void CastInherited(Character caster)
         {
             var dash = caster.gameObject.AddComponent<DashingComponent>();
             Vector3 direction = caster.MovingDirection;
 
-            if (direction == Vector3.zero)
-            {
-                direction = caster.RealFacingDirection;
-            }
+                {
+                }
             else
             {
                 direction.Normalize();
             }
+        }
 
-            dash.InitForcedMotion(caster.MovementHandler);
-            dash.InitDash(direction, _distance, _speed);
         }
     }
 }

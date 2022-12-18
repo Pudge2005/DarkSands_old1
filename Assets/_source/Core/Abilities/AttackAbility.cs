@@ -1,27 +1,70 @@
-﻿using Game.Core.Characters;
+﻿using DevourDev.Unity.Utils;
+using Game.Core.Characters;
 using UnityEngine;
 
 namespace Game.Core.Abilities
 {
-    //public sealed class FastAccess : MonoBehaviour
-    //{
-    //    //prototype-only class
-
-    //}
-    public abstract class AttackAbility : AbilitySo
+    [CreateAssetMenu(menuName = "Abilities/Attack")]
+    public sealed class AttackAbility : AttachingAbilityAction<Character, AttackAbility.AttackingModule>
     {
-        [SerializeField] private float _damage;
-        [SerializeField] private GameObject _instantiateOnHit;
+        //todo: мб изменить обработку инпутов атаки на подсчет времени нажатия
+        //кнопки атаки (держишь 3 секунды - применяется сильная атака, отпускаешь
+        //на первой секунде - применяется обычная атака. Нормализованное время может
+        //использоваться как множитель (урона, оглушения, т.д.)
 
-
-        protected void DealDamage(Character target)
+        //с текущими настройками (атака мгновенная так как запрос на применение абилки
+        //приходит после регистрации удержания кнопок) реализация подобных атак с помощью
+        //Attachable бесполезна.
+        public sealed class AttackingModule : AttachableModule<Character>
         {
-            if(_instantiateOnHit != null)
+            private float _dmg;
+            private float _radius;
+            private float _distance;
+
+
+            internal void InitAttackingModule(float dmg, float radius, float distance)
             {
-                Instantiate(_instantiateOnHit, target.transform.position, Quaternion.identity);
+                _dmg = dmg;
+                _radius = radius;
+                _distance = distance;
+                DealDamage();
             }
 
-            target.DealDamage(_damage);
+
+            private void DealDamage()
+            {
+                Vector3 center = Context.transform.position + Context.RealFacingDirection * _distance;
+
+                var targets = PhysicsHelpers.OverlapSphere(center, _radius).Span;
+
+                foreach (var item in targets)
+                {
+                    if (item.TryGetComponent<Character>(out var ch))
+                    {
+                        if (ch == Context)
+                            continue;
+
+                        ch.DealDamage(_dmg);
+                    }
+                }
+
+
+                Handle?.Cancel();
+                Destroy(this);
+            }
+        }
+
+
+        [SerializeField] private float _dmg = 30f;
+        [SerializeField] private float _radius = 2f;
+        [SerializeField] private float _distance = 1f;
+
+
+        protected override void InitAttachedModule(AttackingModule module, Character context)
+        {
+            module.InitAttackingModule(_dmg, _radius, _distance);
         }
     }
+
+
 }

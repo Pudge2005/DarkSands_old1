@@ -9,16 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526129cbe62a88642bf62e9a3f01687e, type: 3}
+  m_Script: {fileID: 11500000, guid: d1d9aa11315afdb4d9ce96f29570d75a, type: 3}
   m_Name: Dash Ability
   m_EditorClassIdentifier: 
-  _soDatabaseElementID: 0
   _metaInfo:
     _name:
       _translations: []
     _icon: {fileID: 0}
     _preview: {fileID: 0}
-  _cost: []
-  _requirements: []
-  _distance: 3
-  _speed: 20
+  _action: {fileID: 11400000, guid: 59384f125fe3d0f4ba3d5c55a5c424cf, type: 2}
