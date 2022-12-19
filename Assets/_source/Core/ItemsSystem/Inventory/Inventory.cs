@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Core.Characters;
-using UnityEngine;
 
 namespace Game.Core.ItemsSystem
 {
-    public sealed class InventoryComponent : CharacterComponent
-    {
-        private Inventory _internalInventory;
-    }
-    public sealed class Inventory : IEnumerable<IInventorySlot>
+
+    public sealed class Inventory : IInventory
     {
         //TODO: dynamicallyExpandable Buffers
         //TODO: instructions pool
@@ -225,7 +220,13 @@ namespace Game.Core.ItemsSystem
 
         public IEnumerator<IInventorySlot> GetEnumerator()
         {
-            return (IEnumerator<IInventorySlot>)_slots.GetEnumerator();
+            var arr = _slots;
+            var c = _capacity;
+
+            for (int i = 0; i < c; i++)
+            {
+                yield return arr[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -425,6 +426,6 @@ namespace Game.Core.ItemsSystem
         }
 
 
-        
+
     }
 }

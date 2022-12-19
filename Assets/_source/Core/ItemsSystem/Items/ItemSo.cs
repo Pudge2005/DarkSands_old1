@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Game.Core.ItemsSystem
 {
+
     [CreateAssetMenu(menuName = "Game/Items/Item")]
     public class ItemSo : SoDatabaseElement
     {
@@ -22,6 +23,7 @@ namespace Game.Core.ItemsSystem
         //etc...
 
         public MetaInfo MetaInfo => _metaInfo;
+        public bool Stackable => _stackable;
         public int StackSize => _stackable ? _stackSize : 1;
     }
 }
