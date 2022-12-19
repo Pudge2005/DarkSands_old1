@@ -40,6 +40,7 @@ namespace Game.View
         {
         }
     }
+
     public class InventoryUi : MonoBehaviour
     {
       
