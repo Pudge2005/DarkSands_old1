@@ -7,11 +7,11 @@ namespace DevourDev.Unity.Utils
     public class MetaInfo
     {
         [SerializeField] private MultiCulturalItem<string> _name;
-        [SerializeField] private Texture2D _icon;
-        [SerializeField] private Texture2D _preview;
+        [SerializeField] private Sprite _icon;
+        [SerializeField] private Sprite _preview;
 
         public MultiCulturalItem<string> Name => _name;
-        public Texture2D Icon => _icon;
-        public Texture2D Preview => _preview;
+        public Sprite Icon => _icon;
+        public Sprite Preview => _preview;
     }
 }

@@ -8,6 +8,9 @@ namespace Game.Core.ItemsSystem
     public class ItemSo : SoDatabaseElement
     {
         [SerializeField] private MetaInfo _metaInfo;
+        [SerializeField] private bool _stackable;
+        [SerializeField, Min(1)] private int _stackSize;
+        //[SerializeField] private 
 
         //stackable/nonstackable
         //on equip actions
@@ -19,5 +22,6 @@ namespace Game.Core.ItemsSystem
         //etc...
 
         public MetaInfo MetaInfo => _metaInfo;
+        public int StackSize => _stackable ? _stackSize : 1;
     }
 }
